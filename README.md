@@ -1,2 +1,2 @@
 # MedievalBackend
-A really bad Backend for MedievalSim android game.
+A really bad Backend app for MedievalSim.

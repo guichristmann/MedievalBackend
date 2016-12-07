@@ -5,16 +5,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class ToolsActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference dbRef;
+
+    Button createButton;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -26,12 +30,21 @@ public class ToolsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tools);
 
+        Log.e(TAG, "Entered Tools Activity");
+
         setupAuthListener();
 
         database = FirebaseDatabase.getInstance();
-        dbRef = database.getReference("message");
 
-        dbRef.setValue("Hello, World!");
+        createButton = (Button) findViewById(R.id.createButton);
+
+        createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createButton();
+            }
+        });
+
     }
 
     public void setupAuthListener(){
@@ -82,12 +95,22 @@ public class ToolsActivity extends AppCompatActivity {
         return enemy;
     }
 
-    public void createButton(View v){
+    public void createButton(){
+        Log.e(TAG, "Button Pressed");
+
         Enemy enemy_to_write = createEnemy();
 
-        dbRef = database.getReference(enemy_to_write.getName());
-        dbRef.setValue(enemy_to_write);
-
-        Log.d(TAG, "Written new enemy to database");
+        dbRef = database.getReference("enemies/" + enemy_to_write.getName());
+        dbRef.setValue(enemy_to_write, new DatabaseReference.CompletionListener() {
+            @Override
+            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                if (databaseError != null){
+                    Log.e(TAG, "Enemy could not be saved. " + databaseError.getMessage());
+                } else {
+                    Log.e(TAG, "Enemy saved successfully.");
+                }
+            }
+        });
     }
+
 }

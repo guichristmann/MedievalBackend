@@ -79,11 +79,10 @@ public class LoginScreen extends AppCompatActivity {
                             Log.w(TAG, "signInWithEmail", task.getException());
                             Toast.makeText(LoginScreen.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
+                        } else {
+                            Log.v(TAG, "Logged in successfully! Calling gotoToolsActivity()");
+                            gotoToolsActivity();
                         }
-
-                        Log.v(TAG, "Logged in successfully! Calling gotoToolsActivity()");
-                        gotoToolsActivity();
-
                     }
                 });
     }

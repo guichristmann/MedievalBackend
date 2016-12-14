@@ -1,37 +1,71 @@
 package org.christmann.medievalbackend;
 
-
 import java.io.Serializable;
 
 /**
  * Created by Guilherme on 28/11/2016.
- * This is an enemy. He will bite your ass.
+ * Class that will store character information and stats
  */
 
-class Enemy implements Serializable{
-    private String name;        // Identifies "species"
+@SuppressWarnings("ALL")
+class Character implements Serializable{
+    private boolean online;
+    private String displayName;
+
     private int maxhp;          // max hp of the enemy
-    private int currentHP;      // current hp of the enemy
+    private int currentHP;
     private int level;          // level of the enemy
-    private int atk;            // modifier when dealing damage
+    private int atk;             // modifier when dealing damage
     private int def;            // modifier when receiving damage
     private int spd;            // modifier to determine who plays first
-
-    private boolean isAlive;    // determines if a monster is alive (derp)
 
     private double lat;          // latitude
     private double lng;          // longitude
 
-    public Enemy(){
-
+    public Character(){
+        // Empty constructor so Firebase can do its thing
+    }
+    public Character(String name){
+        online = false;
+        displayName = name;
+        maxhp = 20;
+        currentHP = 20;
+        level = 1;
+        atk = 10;
+        def = 10;
+        spd = 10;
     }
 
-    public String getName() {
-        return name;
+    public boolean isOnline() {
+        return online;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOnline(boolean online) {
+        this.online = online;
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
+    }
+
+    public int getMaxhp() {
+        return maxhp;
+    }
+
+    public void setMaxhp(int maxhp) {
+        this.maxhp = maxhp;
+    }
+
+    public int getCurrentHP() {
+        return currentHP;
+    }
+
+    public void setCurrentHP(int currentHP) {
+        this.currentHP = currentHP;
     }
 
     public int getLevel() {
@@ -80,29 +114,5 @@ class Enemy implements Serializable{
 
     public void setLng(double lng) {
         this.lng = lng;
-    }
-
-    public int getMaxhp() {
-        return maxhp;
-    }
-
-    public void setMaxhp(int maxhp) {
-        this.maxhp = maxhp;
-    }
-
-    public int getCurrentHP() {
-        return currentHP;
-    }
-
-    public void setCurrentHP(int currentHP) {
-        this.currentHP = currentHP;
-    }
-
-    public boolean isAlive() {
-        return isAlive;
-    }
-
-    public void setAlive(boolean alive) {
-        isAlive = alive;
     }
 }

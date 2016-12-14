@@ -13,6 +13,10 @@
     <string name="section_format">Hello World from section: %1$d</string>
 
     <!-- ToolsActivity Strings -->
+    <string name="generateEnemy">Generate Enemies Based on Location</string>
+    <string name="createSingleEnemy">Create a Single Enemy</string>
+
+    <!-- CreateSingleEnemy Strings -->
     <string name="putMonster">Enemies</string>
     <string name="enemyInformation">Enemy Info</string>
     <string name="skeletonEnemy">Skeleton</string>
@@ -21,10 +25,24 @@
     <string name="atkView">ATK:</string>
     <string name="defView">DEF:</string>
     <string name="spdView">SPD:</string>
-    <string name="Lat">Lat: </string>
-    <string name="Long">Lng:</string>
+    <string name="Lat">Latitude: </string>
+    <string name="Long">Longitude:</string>
     <string name="createButton">Create</string>
     <string name="mapPos">Map Position</string>
     <string name="imageDescription">logo</string>
+    <string name="maxHP_view">Max HP:</string>
+
+    <!-- GenerateEnemies Strings-->
+    <string name="enemy_level_range">Enemy Level Range</string>
+    <string name="minlevel_maxlevel">minLevel-maxLevel</string>
+    <string name="enemy_generator">Enemy Generator</string>
+    <string name="enemy_name">Enemy Name</string>
+    <string name="name">Name</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="generating">Generating Enemies</string>
+    <string name="stopped">Stopped</string>
+    <string name="interval">Time Interval</string>
+
 
 </resources>
